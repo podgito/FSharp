@@ -3,6 +3,7 @@
 open System
 open FSharp.Data
 
+//Go to Google Takeout to download Hangouts chat history!
 
     
 type private HangoutsJson = FSharp.Data.JsonProvider<"Hangouts.json">
@@ -27,12 +28,10 @@ type HangoutsFileParser() =
                                 participants 
                                 |> Array.filter (fun p -> p.Id.GaiaId = event.SenderId.GaiaId) 
                                 |> Array.exactlyOne
-                                //|> Seq.exactlyOne
 
                             let message = 
                                 event.ChatMessage.MessageContent.Segment 
                                 |> Array.exactlyOne
-                                //|> Array.toSeq 
 
                             yield { 
                                 Message = message.Text; 
